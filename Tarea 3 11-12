@@ -208,14 +208,66 @@ Considera un modelo SIRS sin demografia.
 las ecuaciones diferenciales correspondientes.
 ```{r}
 $$
-\dot{S}_{\nu (N)}^{\mu +\phi +\beta ((SI)/N)}\rightarrow \dot{I}_{\beta ((SI)/N)}^{\mu +\gamma }\rightarrow \dot{V}_{\gamma (I)+phi (S)}^{\mu }
+\dot{S}_{\epsilon (R)}^{beta (SI)}\rightarrow \dot{I}_{\beta (SI)}^{\gamma }\rightarrow \dot{R}_{\gamma (I)}^{\epsilon }
+$$
+
+$$
+\begin{aligned}
+\dot{S} =-\beta (S I) + \epsilon R \\
+\dot{I} = \beta (S I)-\gamma I \\
+\dot{V} =\gamma I - \epsilon R \\
+\end{aligned}
 $$
 ```
 
 (b) Describe los terminos y explica el signifcado de cada parametro.
+\beta es la tasa de suceptibles que pasan a ser infectados. Lo cual
+sucede al interaccionar los suceptibles con los infectados. Se obtiene
+1/#dias que se desarrolla la enfermedad
+\gamma es la tasa de infectados que pasan a ser recuperados. Se obteine 
+1/#dias que el individuo deja de presentar la enfermedad
+\epsilon es la tasa de recuperados que pasan a ser suceptibles. Se obtiene
+1/#dias en que deja de haber inmunidad o vuelve a ser suceptible.
 
 (c) Reduce el sistema a dos ecuaciones diferenciales. ¿Porque puedes
 hacer esto?
+```{r}
+$$
+\dot{S}_{\gamma (I)}^{beta (SI)}\rightarrow \dot{I}_{\beta (SI)}^{\gamma }
+$$
+
+$$
+\begin{aligned}
+\dot{S} =-\beta (S I) + \gamma I \\
+\dot{I} = \beta (S I)-\gamma I \\
+\end{aligned}
+$$
+```
+Se puede reducir a 2D porque no se pierde información de los parametros o
+se ve afectado el modelo de manera relevante.
 
 (d) Encuentra los puntos de equilibrio free-disease (I = 0) y endemico
 (I distinto de 0) y determina sus estabilidades.
+
+```{r}
+$$
+\begin{array}{l}
+R_0=\gamma / \beta \\
+\\
+\dot{S}=I(-\beta S+\gamma) \\
+I=0 \\
+S=\gamma / \beta=R_0 \\
+\\
+\dot{I}=I(\beta S- \gamma) \\
+I=0 \\
+S=\gamma / \beta=R_0 \\
+\\
+x=(S, I) \\
+x_1=(0,0) \\
+x_2=(\gamma/ \beta, 0) & R_0 > 1  \operatorname{endemico, si} & R_0 < 1 \operatorname{free-disease}
+\end{array}
+$$
+```
+
+No sé como encontrar los puntos de equlibrio, pero sé que estan 
+en donde los indique, y tampoco sé como determinar las estabilidades
