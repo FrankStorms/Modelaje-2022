@@ -1,0 +1,35 @@
+---
+title: "Tarea 3 11/22 Modelaje"
+author: "Francisco Alfonso Perez Storms"
+date: "13/11/2022"
+output: html_document
+---
+
+{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+{r}
+#library(deSolve)
+En los problemas analíticos no pongas valores a los par ́ametros. Repito NO 
+pongas valores a lo par ́ametros. Solo ausme que todos son positivos. Para
+los problemas computacionales debes poner valores a los par ́ametros para poder
+resolverlos.
+
+### 1. 
+Encuentra el numero reproductivo b ́asico R0 para el siguiente modelo.
+Encuentra el punto de equilibrio end ́emico.
+{r}
+
+
+Agrega a tu modelo tasas de nacimiento y muertes naturales. Demuestra
+que el punto de equilibrio free-disease es asint ́oticamente estable con R0 <
+1 y el punto de equilibrio end ́emico lo es con R0 > 1. Explica y discute tu
+resultado.
+{r}
+
+
+### 2. 
+Considera una enfermedad transmisible en la cual los infectados no se
+recuperan. Discute porqu ́e dicha enfermedad puede ser modelada por el
+siguiente conjunto de ecuaciones diferenciales
+{r}
