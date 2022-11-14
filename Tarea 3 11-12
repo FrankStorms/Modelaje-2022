@@ -19,8 +19,8 @@ los problemas computacionales debes poner valores a los par ́ametros para poder
 resolverlos.
 
 ### 1. 
-Encuentra el numero reproductivo b ́asico R0 para el siguiente modelo.
-Encuentra el punto de equilibrio end ́emico.
+Encuentra el numero reproductivo basico R0 para el siguiente modelo.
+Encuentra el punto de equilibrio endemico.
 
 ```{r}
 $$
@@ -29,22 +29,96 @@ $$
 \dot{I} &=& \beta S I-(\alpha+delta) I
 \end{aligned}
 $$
+```
 
+Obtenemos el R0 y obtenemos los valores para obtener los puntos de equilibrio
+```{r}
+$$
+\begin{array}{l}
+R_0=\frac{\beta}{\alpha+d} \\
+\dot{S}=I(-\beta S+\alpha) \\
+I=0 \\
+S=\alpha / \beta \\
+\dot{I}=I(\beta S-(\alpha+\delta)) \\
+\dot{I}=0 \\
+S=(\alpha + \delta) / \beta=1 / R_0
+\end{array}
+$$
+```
+Evaluamos los puntos de equilibrio
+```{r}
+$$
+\begin{array}{r}
+\dot{S} : \dot{I}=S\dot = (\alpha+\delta) / \beta \\
+-\beta \frac{\alpha + \delta}{\beta}+\alpha=0 \\
+\quad \delta=0 \\
+\dot{I} : \dot{S}=S=\alpha / \beta \\
+\beta \frac{\alpha}{\beta}-(\alpha + \delta)=0\\
+\quad\delta=0\\
+\\
+x = (S,I)\\
+x_1=(0,0) \\
+x_2=\left(\alpha+\delta/ \beta,0) \delta=0\right. \\
+x_3=(\alpha / \beta, 0)
+\end{array}
+$$
 ```
 Agrega a tu modelo tasas de nacimiento y muertes naturales. Demuestra
-que el punto de equilibrio free-disease es asint ́oticamente estable con R0 <
-1 y el punto de equilibrio end ́emico lo es con R0 > 1. Explica y discute tu
+que el punto de equilibrio free-disease es asintoticamente estable con R0 <
+1 y el punto de equilibrio endemico lo es con R0 > 1. Explica y discute tu
 resultado.
 
+Modelo y formulas del modelo con tasas de nacimiento y muertes naturales
 ```{r}
+$$
+\dot{S}_{\alpha+\nu}^{\mu+\beta(SI)}\rightarrow \dot{I}^{\mu + \delta + \alpha}_{\beta(SI)}
+$$
 
+$$
+\begin{array}{l}
+\dot{S}=-\beta(S I)+\alpha I+\nu-\mu S \\
+\dot{I}=\beta(S I)-(\mu+\delta+\alpha) I
+\end{array}
+$$
 ```
+NO SÉ, como demostrar que el punto de equilibrio es free-disease es 
+asintoticamente estable con R0<1 y el punto de equilibrio endemico 
+lo es con R0 > 1.
+
+Sé que el R0 es un punto de bifurcación, y que esta relacionado con la
+eficiencia del patogeno para dispersarse en la población. Sí es menor a 0
+Es seguro que llegara un punto en el que los I estaran en 0, como se demuestra
+con todos los puntos de equilibrio obtenidos, más, si esta en mayor a 1, entonces
+habra una fracción de I que se mantendra a traves del tiempo. 
 
 ### 2. 
 Considera una enfermedad transmisible en la cual los infectados no se
-recuperan. Discute porqu ́e dicha enfermedad puede ser modelada por el
+recuperan. Discute porque dicha enfermedad puede ser modelada por el
 siguiente conjunto de ecuaciones diferenciales
 
-```{r}
 
+```{r}
+$$
+\dot{S}^{\beta(SI)}\rightarrow \dot{I}_{\beta(SI)}
+$$
+
+$$
+\begin{array}{l}
+\dot{S}=-\beta(S I)\\
+\dot{I}=\beta(S I)
+\end{array}
+$$
 ```
+Con este modelo se representa una enfermedad transmisible 
+en la que los infectados no se recuperan porque no hay un 
+compartimento de recuperados, ni una tasa que los regrese 
+a ser suceptibles.
+
+Si la población de suceptibles es de 10^999, y solo 1 infectado,
+a partir de una beta de .01, tardaría mucho en que los suceptibles
+pasen a ser infectados porque el flujo es muy chiquito y la población
+es muy grande, más al final todos terminarian en el compartimento de infectados.
+Si tuvieramos tasa de muerte natural y natalidad, unicamente los que mueren en 
+el compartimento de suceptibles,-puede ser-, que no se contagiarian
+o pasarian a ser infectados.
+
