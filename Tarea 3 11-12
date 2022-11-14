@@ -10,6 +10,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
+
+```
+
+```{r}
 #library(deSolve)
 ```
 
@@ -71,7 +75,7 @@ resultado.
 Modelo y formulas del modelo con tasas de nacimiento y muertes naturales
 ```{r}
 $$
-\dot{S}_{\alpha+\nu}^{\mu+\beta(SI)}\rightarrow \dot{I}^{\mu + \delta + \alpha}_{\beta(SI)}
+\dot{S}_{\alpha+\nu}^{\mu+\beta(SI)}\rightarrow \dot{I}_{\beta(SI)}^{\mu + \delta + \alpha}
 $$
 
 $$
@@ -122,3 +126,96 @@ Si tuvieramos tasa de muerte natural y natalidad, unicamente los que mueren en
 el compartimento de suceptibles,-puede ser-, que no se contagiarian
 o pasarian a ser infectados.
 
+### 3
+Considera un modelo b ́asico SIR al que le agregaremos la clase de vacu-
+nados en lugar de los recuperados. Discute porque dicho modelo puede
+representarse por el siguiente conjunto de ecuaciones diferenciales
+
+```{r}
+$$
+\begin{aligned}
+\dot{S} &=\mu N-\beta \frac{S I}{N}-(\mu +\phi ) S \\
+\dot{I} &=\quad \beta \frac{S I}{N}-(\mu +\gamma ) I \\
+\dot{V} &=\gamma I+\phi S-\mu V \\
+\operatorname{con} N(t)=S(t)+I(t) &+V(t)
+\end{aligned}
+$$
+```
+El modelo incluye las variables y parametros para un sistema abierto 
+de suceptibles, infectados y vacunados, considerando que el contagio
+de la enfermedad es dependiente de la frecuencia con que pueden
+interactuar los infectados con los suceptibles.
+
+(a) Dibuja un modelo por compartimentos que represente al conjunto de
+ecuaciones diferenciales
+```{r}
+$$
+\dot{S}_{\nu (N)}^{\mu +\phi +\beta ((SI)/N)}\rightarrow \dot{I}_{\beta ((SI)/N)}^{\mu +\gamma }\rightarrow \dot{V}_{\gamma (I)+phi (S)}^{\mu }
+$$
+```
+
+(b) Demuestra que \dot{N} = 0.¿Que significa este resultado?
+Sí \dot{N} = 0, quiere decir que tanto \dot{S}, \dot{I} y \dot{V} no hay
+población, por lo tanto estamos en el punto de equilibrio de (0,0,0),
+por lo tanto no individuos ni enfermedad en la "población", porque no hay
+población.
+
+(c) Discute porque es suficiente con estudiar las dos primeras ecuaciones
+para resolver el sistema.
+Podemos reducir 1D, para poder simplificar el modelo y sea más facil su 
+interpretación, agregado a que no estamos perdiendo información, a no ser que 
+no sea muy relevante conocer la cantidad de individuos que llegan al comparti-
+mento de vacunados. Agregado a que podemos considerar que es un sistema cerrado
+porque la población total se mantiene, por lo tanto podriamos simplificarlo aun
+mas al quitar las tasas de natalidad y muerte.
+
+Este es el sistema de ecuaciaciones que obtendriamos
+```{r}
+$$
+\begin{array}{l}
+\dot{S}=-\beta S I-\phi S \\
+I=\beta S I- \gamma I
+\end{array}
+$$
+```
+
+(d) Calcula los puntos de equilibrio y determina sus estabilidades.
+```{r}
+$$
+\begin{array}{l}
+R_0= \gamma / \beta \\
+\dot{S}=S(-\beta I-\phi) \\
+S=0\\
+I=-\phi / \beta \\
+\\
+\dot{I}=I(\beta S-\gamma) \\
+I=0 \\
+S=\gamma / \beta=R_0 \\
+\\
+x=(S, I) \\
+x_1=(0,0) \\
+x_2=(0,-\phi / \beta) \\
+x_3=(\gamma / \beta, 0)
+\end{array}
+$$
+```
+No sé como evaluar sus estabilidades
+
+### 4. 
+Considera un modelo SIRS sin demografia.
+
+(a) Escribe un esquema por compartimentos que lo describa , asi como
+las ecuaciones diferenciales correspondientes.
+```{r}
+$$
+\dot{S}_{\nu (N)}^{\mu +\phi +\beta ((SI)/N)}\rightarrow \dot{I}_{\beta ((SI)/N)}^{\mu +\gamma }\rightarrow \dot{V}_{\gamma (I)+phi (S)}^{\mu }
+$$
+```
+
+(b) Describe los terminos y explica el signifcado de cada parametro.
+
+(c) Reduce el sistema a dos ecuaciones diferenciales. ¿Porque puedes
+hacer esto?
+
+(d) Encuentra los puntos de equilibrio free-disease (I = 0) y endemico
+(I distinto de 0) y determina sus estabilidades.
