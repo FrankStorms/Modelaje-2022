@@ -304,10 +304,12 @@ with(as.list(c(state, parameters)), {
       })
 }
 ```
+
 El parametro beta varia entre 2 a 21 días, pero para modelos lo sulen manejar en 5 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7943714/#CR5
-El % de mortalidad es entre 50% y 90%, lo usare en 50%  https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7943714/#CR5
-La mortalidad es de 9.38% y la natalidad es del 19.77% https://datosmacro.expansion.com/demografia/natalidad/sudafrica
+El % de mortalidad es entre 50% y 90%, lo usare en 50%  delta, por lo tanto gama seria el 50% https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7943714/#CR5
+La mortalidad es de 9.38% para mu y la natalidad es del 19.77% para nu https://datosmacro.expansion.com/demografia/natalidad/sudafrica
 En el norte de africa hay cerca de 60 millones de habitantes 
+
 ```{r}
 pars <- c(nu=.1977, beta=1/5, gama =.5 , mu=.0938 , delta=.5)  
 condiciones_iniciales <- c(S =60000000, I=10000)
@@ -375,12 +377,18 @@ with(as.list(c(state, parameters)), {
       })
 }
 ```
+
 El parametro beta varia entre 2 a 21 días, pero para modelos lo sulen manejar en 5 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7943714/#CR5
-El % de mortalidad es entre 50% y 90%, lo usare en 50%  https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7943714/#CR5
-La mortalidad es de 9.38% y la natalidad es del 19.77% https://datosmacro.expansion.com/demografia/natalidad/sudafrica
+El parametro delta, hay un % de mortalidad de entre 50% y 90%, lo usare en 50% por lo tanto gamma sera del 50% https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7943714/#CR5
+La mortalidad es de 9.38% parametro mu y la natalidad es del 19.77% parametro nu https://datosmacro.expansion.com/demografia/natalidad/sudafrica
 En el norte de africa hay cerca de 60 millones de habitantes 
+
+El periodo de incubación para beta es en promedio de 2 semanas; el tiempo de la fiebre es intermitente entre 1 a 5 semanas, luego entre 2 a 14 días vuelven unos sintomas,
+para delta en promedio lo dejariamos en 25 días para delta; y para los que van a cronicos puede presentar sintomas despues de meses o incluso años, lo estandarizamos a 
+1 año para el parametro gama
+Lo dejamos igual para la poblacion de africa del norte con 60 millones de habitantes
 ```{r}
-pars <- c( beta=1/5,  delta=.5, gama =.5)  
+pars <- c( beta=1/14,  delta=1/25, gama =1/365)  
 condiciones_iniciales <- c(S =60000000, I=10000)
 tiempo <- seq(0, 25, by = 0.001)
 out <- ode(condiciones_iniciales, tiempo, SIRC, pars) 
