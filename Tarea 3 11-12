@@ -378,14 +378,9 @@ with(as.list(c(state, parameters)), {
 }
 ```
 
-El parametro beta varia entre 2 a 21 días, pero para modelos lo sulen manejar en 5 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7943714/#CR5
-El parametro delta, hay un % de mortalidad de entre 50% y 90%, lo usare en 50% por lo tanto gamma sera del 50% https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7943714/#CR5
-La mortalidad es de 9.38% parametro mu y la natalidad es del 19.77% parametro nu https://datosmacro.expansion.com/demografia/natalidad/sudafrica
-En el norte de africa hay cerca de 60 millones de habitantes 
-
 El periodo de incubación para beta es en promedio de 2 semanas; el tiempo de la fiebre es intermitente entre 1 a 5 semanas, luego entre 2 a 14 días vuelven unos sintomas,
 para delta en promedio lo dejariamos en 25 días para delta; y para los que van a cronicos puede presentar sintomas despues de meses o incluso años, lo estandarizamos a 
-1 año para el parametro gama
+1 año para el parametro gama https://www.msdmanuals.com/es-mx/professional/enfermedades-infecciosas/bacilos-gramnegativos/brucelosis
 Lo dejamos igual para la poblacion de africa del norte con 60 millones de habitantes
 ```{r}
 pars <- c( beta=1/14,  delta=1/25, gama =1/365)  
