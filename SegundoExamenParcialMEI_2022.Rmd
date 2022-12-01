@@ -1,0 +1,135 @@
+---
+title: "Modelaje de Enfermedades Infecciosas"
+author: "Segundo Examen Parcial"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  html_document:
+    toc: true
+    number_sections: true
+    toc_float: true
+    fig_height: 3
+    fig_width: 5
+  pdf_document:
+    fig_height: 3
+    fig_width: 5
+  word_document:
+    fig_height: 3
+    fig_width: 5
+---
+# Selección
+
+Considera dos poblaciones $x(t)$ y $y(t)$ 
+
+1. Si las pobalciones no interactuan las ecuaciones que gobierna al sistema son:
+$$\dot x(t)=ax$$
+$$\dot y(t)=by$$
+
+con $a,b >0$ 
+Demuestra que la soluciones son 
+
+$$ x(t)=x_0e^{at}$$
+
+$$y(t)=y_0e^{bt}$$
+con $x_0$ y $y_0$ las poblaciones iniciales.
+
+2. Construye la siguiente varibale $\rho(t)$
+
+$$\rho(t)= \frac{x(t)}{y(t)}$$
+Demuestra que esa la derivada de esa ecuación se puede poner como:
+
+$$\dot \rho= (a-b)\rho$$
+Sugerencia: utiliza la regla de la derivada de un cociente.
+
+3. Demuestra que la solcuión de la  ecuación  anterior es:
+
+$$\rho(t) =\rho_0e^{(a-b)*t}$$
+
+4. A partir de esta solución demuestra que:
+ - Si $a>b$ entonces $\rho(t)$ tiende a infinito y por lo tanto la población x elimina a la población y.Es decir x se selecciona sobre y
+ - Si $a<b$ entonces $\rho(t)$ tiende a cero y por lo tanto la población y elimina a la población x.Es decir y se selecciona sobre x.
+
+# Estadio asintomático
+
+
+Las siguientes ecuaciones describen un modelo por compartimentos de una enfermedad infecciosa  con un estadio asintomático.
+$$\dot S = \nu -\beta S(I +qA)-\mu S$$
+$$\dot E= \beta S(I+qA) -(\eta+\mu)E $$
+$$\dot I = p\eta E -(\alpha +\mu)I$$
+$$\dot A= (1-p)\eta E -(\gamma +\mu)A$$
+$$\dot R=\alpha I +\gamma A-\mu R$$
+
+1. Dibuja el esquema por compartimentos que representa este conjunto de ecuaciones
+2. Explica el significado de cada ecuación: es decir, explica el significado de cada término y cada parámetro. ¿Existen parámetros que están acotados, si es así indica el intervalo en donde pueden variar?
+3. ¿Bajo qué condiciones la población se conservaría?
+4. Encuentra, si existe, el punto de equilibrio *free-disease*  
+5. ¿Qué tipo de enfermedad puede estar describiendo? Justifica tu respuesta. 
+6. Selecciona un conjunto de parámetros adecuados y resuelve numéricamente el sistema de ecuaciones diferenciales. Asegurate que tu solución alcance un punto de equilibrio. Discute tu resultado.
+
+# Estadio crónico 
+
+Las siguientes ecuaciones describen un modelo por compartimentos de una enfermedad infecciosa  con un estadio crónico.
+$$\dot S = \nu -\beta S(I +qC)-\mu S +\rho R$$
+$$\dot C= \beta S(I+qC) -(\eta+\gamma +\mu)C $$
+$$\dot I = \eta C -(\alpha +\mu)I$$
+$$\dot R= \alpha I +\gamma C -(\mu +\rho)R$$
+
+
+1. Dibuja el esquema por compartimentos que representa este conjunto de ecuaciones
+2. Explica el significado de cada ecuación: es decir, explica el significado de cada término y cada parámetro. ¿Existen parámetros que están acotados, si es así indica el intervalo en donde pueden variar?
+3. ¿Bajo qué condiciones la población se conservaría?
+4. Encuentra, si existe, el punto de equilibrio *free-disease*  
+5. ¿Qué tipo de enfermedad puede estar describiendo? Justifica tu respuesta. 
+6. Selecciona un conjunto de parámetros adecuados y resuelve numéricamente el sistema de ecuaciones diferenciales. Asegurate que tu solución alcance un punto de equilibrio.Discute tu resultado. 
+
+# Estadio de inmunidad pasiva
+
+La inmunidad pasiva consiste en la transferencia de inmunidad activa en la forma de anticuerpos de un individuo  a otro.La inmunidad pasiva puede suceder de forma natural, por ejemplo, por la vía materna al feto a través de la placenta o al bebé vía la leche materna. El estadio de inmunidad pasiva se denota por la variable $M(t)$ y se añade al sistema antes de que los individuops sean suceptibles. El siguiente modelo **MSIR** se describe con las siguientes ecuaciones diferenciales.
+
+
+$$\dot M = \nu -\rho M- \mu M$$
+$$\dot S= \rho M -\beta SI-\mu S $$
+$$\dot I = \beta SI -(\alpha +\mu)I$$
+$$\dot R= \alpha I -\mu R$$
+
+
+1. ¿Bajo qué condiciones se puede inducir de forma artificial la inmunidad pasiva?
+2. Dibuja el esquema por compartimentos que representa este conjunto de ecuaciones
+3. Explica el significado de cada ecuación: es decir, explica el significado de cada término y cada parámetro. ¿Existen parámetros que están acotados, si es así indica el intervalo en donde pueden variar?
+4. ¿Bajo qué condiciones la población se conservaría?
+5. Encuentra, si existe, el punto de equilibrio *free-disease*  
+6. ¿Qué tipo de enfermedad puede estar describiendo? Justifica tu respuesta. 
+7. Selecciona un conjunto de parámetros adecuados y resuelve numéricamente el sistema de ecuaciones diferenciales. Asegurate que tu solución alcance un punto de equilibrio.Discute tu resultado.
+
+#  Tratamiento
+
+Considera el sigueinte conjunto de ecuaciones diferenciales que describen una enfermedad infecciosa con individuos en tratamiento $T(t)$.
+
+$$\dot S = \nu -\beta_1 \frac{SI}{N}- \mu S$$
+$$\dot E= \beta_1\frac{SI}{N} + \beta_2 \frac{TI}{N}-(\mu +\kappa +r_1)E +pr_2I $$
+$$\dot I = \kappa E-(r_2+\mu)I $$
+$$\dot T = r_1E +qr_2I -\beta_2\frac{TI}{N}-\mu T$$
+
+con $N(t)=S(t)+E(t)+I(t)+T(t)$
+1. Dibuja el esquema por compartimentos que representa este conjunto de ecuaciones
+2. Explica el significado de cada ecuación: es decir, explica el significado de cada término y cada parámetro. ¿Existen parámetros que están acotados, si es así indica el intervalo en donde pueden variar?
+3. ¿Bajo qué condiciones la población se conservaría?
+4. Encuentra, si existe, el punto de equilibrio *free-disease*  
+5. ¿Qué tipo de enfermedad puede estar describiendo? Justifica tu respuesta. 
+6. Selecciona un conjunto de parámetros adecuados y resuelve numéricamente el sistema de ecuaciones diferenciales. Asegurate que tu solución alcance un punto de equilibrio.Discute tu resultado.
+
+
+
+# Modelo epidemiológico de la CDMX
+
+Considera el modelo que usó la CDMX para  moniterear al inicio de la pandemia de COVID-19 los casos, los hospitalizados y muertes en dicha entidad. El modelo se encuentra [acá](https://modelo.covid19.cdmx.gob.mx/modelo-epidemico)
+
+
+1. Explica el significado de cada ecuación: es decir, explica el significado de cada término y cada parámetro.
+3. ¿La población se conserva?
+4. Encuentra, si existe, el punto de equilibrio *free-disease*  
+5. Usa los parámetros de parámetros que sugieren y resuelve numéricamente el sistema de ecuaciones diferenciales. Asegurate que tu solución alcance un punto de equilibrio.Discute tu resultado.
+6. ¿Qué modificaciones se te ocurren que podrían implementarse para mejorar ese modelo?
+
+
+
+
